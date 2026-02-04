@@ -305,6 +305,14 @@
       max-width: 520px;
       height: 320px;
       touch-action: none;
+      background-size: 16px 16px;
+      background-position: 0 0;
+    }
+
+    #paint-canvas.grid-on {
+      background-image:
+        linear-gradient(to right, rgba(0,0,0,0.08) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0,0,0,0.08) 1px, transparent 1px);
     }
 
     .gallery-grid {
@@ -384,6 +392,90 @@
         <div class="icon-img">🎨</div>
         <div class="icon-label">PAINT</div>
       </div>
+      <div class="icon" data-app="todo">
+        <div class="icon-img">☑️</div>
+        <div class="icon-label">TODO</div>
+      </div>
+      <div class="icon" data-app="clock">
+        <div class="icon-img">⏰</div>
+        <div class="icon-label">CLOCK</div>
+      </div>
+      <div class="icon" data-app="browser">
+        <div class="icon-img">🌐</div>
+        <div class="icon-label">BROWSER</div>
+      </div>
+      <div class="icon" data-app="html-edit">
+        <div class="icon-img">⌨️</div>
+        <div class="icon-label">HTML EDIT</div>
+      </div>
+      <div class="icon" data-app="html-preview">
+        <div class="icon-img">👁️</div>
+        <div class="icon-label">HTML PREV</div>
+      </div>
+      <div class="icon" data-app="terminal">
+        <div class="icon-img">></div>
+        <div class="icon-label">TERMINAL</div>
+      </div>
+      <div class="icon" data-app="weather">
+        <div class="icon-img">☀️</div>
+        <div class="icon-label">WEATHER</div>
+      </div>
+      <div class="icon" data-app="email">
+        <div class="icon-img">✉️</div>
+        <div class="icon-label">MAIL</div>
+      </div>
+      <div class="icon" data-app="chat">
+        <div class="icon-img">💬</div>
+        <div class="icon-label">CHAT</div>
+      </div>
+      <div class="icon" data-app="game">
+        <div class="icon-img">🎮</div>
+        <div class="icon-label">GAME</div>
+      </div>
+      <div class="icon" data-app="mines">
+        <div class="icon-img">💣</div>
+        <div class="icon-label">MINES</div>
+      </div>
+      <div class="icon" data-app="synth">
+        <div class="icon-img">🎹</div>
+        <div class="icon-label">SYNTH</div>
+      </div>
+      <div class="icon" data-app="timer">
+        <div class="icon-img">⏱️</div>
+        <div class="icon-label">TIMER</div>
+      </div>
+      <div class="icon" data-app="converter">
+        <div class="icon-img">⇆</div>
+        <div class="icon-label">CONVERT</div>
+      </div>
+      <div class="icon" data-app="calendar">
+        <div class="icon-img">📅</div>
+        <div class="icon-label">CALENDAR</div>
+      </div>
+      <div class="icon" data-app="files">
+        <div class="icon-img">📂</div>
+        <div class="icon-label">FILES</div>
+      </div>
+      <div class="icon" data-app="reader">
+        <div class="icon-img">📖</div>
+        <div class="icon-label">READER</div>
+      </div>
+      <div class="icon" data-app="music-mp3">
+        <div class="icon-img">♫</div>
+        <div class="icon-label">MP3</div>
+      </div>
+      <div class="icon" data-app="pixelpad">
+        <div class="icon-img">🧩</div>
+        <div class="icon-label">PIXELPAD</div>
+      </div>
+      <div class="icon" data-app="news">
+        <div class="icon-img">📰</div>
+        <div class="icon-label">NEWS</div>
+      </div>
+      <div class="icon" data-app="camera">
+        <div class="icon-img">📷</div>
+        <div class="icon-label">CAMERA</div>
+      </div>
       <div class="icon" data-app="gallery">
         <div class="icon-img">🖼️</div>
         <div class="icon-label">GALLERY</div>
@@ -395,6 +487,10 @@
       <div class="icon" data-app="music">
         <div class="icon-img">♪</div>
         <div class="icon-label">MUSIC</div>
+      </div>
+      <div class="icon" data-app="radio">
+        <div class="icon-img">📻</div>
+        <div class="icon-label">RADIO</div>
       </div>
       <div class="icon" data-app="themes">
         <div class="icon-img">⚙️</div>
@@ -416,6 +512,28 @@
       <div class="menu-item" data-app="calculator">Calculator</div>
       <div class="menu-item" data-app="music">Music Player</div>
       <div class="menu-item" data-app="themes">Theme Switcher</div>
+      <div class="menu-item" data-app="todo">Todo List</div>
+      <div class="menu-item" data-app="clock">Clock</div>
+      <div class="menu-item" data-app="browser">Mini Browser</div>
+      <div class="menu-item" data-app="html-edit">HTML Editor</div>
+      <div class="menu-item" data-app="html-preview">HTML Preview</div>
+      <div class="menu-item" data-app="terminal">Terminal</div>
+      <div class="menu-item" data-app="weather">Weather</div>
+      <div class="menu-item" data-app="email">Email</div>
+      <div class="menu-item" data-app="chat">Chat</div>
+      <div class="menu-item" data-app="game">Snake Game</div>
+      <div class="menu-item" data-app="mines">Mines</div>
+      <div class="menu-item" data-app="synth">Synth</div>
+      <div class="menu-item" data-app="timer">Timer</div>
+      <div class="menu-item" data-app="converter">Unit Converter</div>
+      <div class="menu-item" data-app="calendar">Calendar</div>
+      <div class="menu-item" data-app="files">Files</div>
+      <div class="menu-item" data-app="reader">Reader</div>
+      <div class="menu-item" data-app="music-mp3">MP3 Deck</div>
+      <div class="menu-item" data-app="pixelpad">PixelPad</div>
+      <div class="menu-item" data-app="news">News</div>
+      <div class="menu-item" data-app="camera">Camera</div>
+      <div class="menu-item" data-app="radio">Radio</div>
     </div>
   </div>
 
@@ -550,6 +668,16 @@
       classic: { bg: '#2b0f54', win: '#c2c3c7', head: '#001a6e', task: '#d0d0d0', icon: 'rgba(255,255,255,0.15)' },
       neon: { bg: '#090912', win: '#0f111a', head: '#11c5ff', task: '#0c0f1a', icon: 'rgba(17,197,255,0.2)' },
       sunset: { bg: '#2d0b1a', win: '#f8d9c6', head: '#c5163a', task: '#f1c0a0', icon: 'rgba(197,22,58,0.2)' },
+      ocean: { bg: '#032b44', win: '#d8f1ff', head: '#0b7fab', task: '#a5d7f2', icon: 'rgba(11,127,171,0.2)' },
+      forest: { bg: '#0f2d1e', win: '#daf0da', head: '#2f7b4b', task: '#b5d9b7', icon: 'rgba(47,123,75,0.2)' },
+      candy: { bg: '#4d1135', win: '#ffe3f0', head: '#ff5ba8', task: '#ffc9e0', icon: 'rgba(255,91,168,0.25)' },
+      desert: { bg: '#3a2010', win: '#f6e2c4', head: '#c2853a', task: '#e9c58f', icon: 'rgba(194,133,58,0.22)' },
+      arctic: { bg: '#0a2236', win: '#e9f5ff', head: '#4aa0d5', task: '#c7e6fb', icon: 'rgba(74,160,213,0.22)' },
+      grayscale: { bg: '#111', win: '#e5e5e5', head: '#333', task: '#ccc', icon: 'rgba(255,255,255,0.12)' },
+      matrix: { bg: '#001000', win: '#0a1a0a', head: '#00ff66', task: '#042b0b', icon: 'rgba(0,255,102,0.18)' },
+      vapor: { bg: '#160d2e', win: '#f1d7ff', head: '#7b5cf0', task: '#d0b5ff', icon: 'rgba(123,92,240,0.22)' },
+      lava: { bg: '#1b0a00', win: '#ffe5d4', head: '#ff3b1f', task: '#ffb38a', icon: 'rgba(255,59,31,0.2)' },
+      mint: { bg: '#0f2a2a', win: '#e3fff5', head: '#34c08a', task: '#b6f0d8', icon: 'rgba(52,192,138,0.22)' },
     };
 
     function applyTheme(name) {
@@ -580,17 +708,369 @@
             <textarea class="app-notes" aria-label="notes">Type your retro notes here...</textarea>
           `, 360, 260);
           break;
-        case 'paint':
-          const paintWin = createWindow('PAINT.EXE', `
-            <div class="paint-toolbar">
-              <label>Color <input type="color" id="paint-color" value="#000000"></label>
-              <label>Size <input type="range" id="paint-size" min="1" max="20" value="4"></label>
-              <button id="paint-clear">Clear</button>
-              <button id="paint-save">Save PNG</button>
+      case 'paint':
+        const paintWin = createWindow('PAINT.EXE', `
+          <div class="paint-toolbar">
+            <label>Color <input type="color" id="paint-color" value="#000000"></label>
+            <label>Size <input type="range" id="paint-size" min="1" max="20" value="4"></label>
+            <label>Tool 
+              <select id="paint-tool">
+                <option value="brush">Brush</option>
+                <option value="line">Line</option>
+                <option value="rect">Rect</option>
+                <option value="fill">Fill</option>
+              </select>
+            </label>
+            <button id="paint-grid">Grid</button>
+            <button id="paint-clear">Clear</button>
+            <button id="paint-save">Save PNG</button>
+          </div>
+          <canvas id="paint-canvas" width="520" height="320"></canvas>
+        `, 620, 480);
+        setupPaint(paintWin.querySelector('#paint-canvas'));
+        break;
+        case 'todo':
+          createWindow('TODO.LST', `
+            <p>Tasks</p>
+            <div id="todo-list"></div>
+            <input id="todo-input" placeholder="Add item" style="width:100%;padding:6px;border:2px inset #d0d0d0;font-family:inherit;font-size:11px;">
+          `, 320, 280);
+          (() => {
+            const win = desktop.lastElementChild;
+            const list = win.querySelector('#todo-list');
+            const input = win.querySelector('#todo-input');
+            const todos = [];
+            const render = () => {
+              list.innerHTML = '';
+              todos.forEach((t, i) => {
+                const row = document.createElement('div');
+                const cb = document.createElement('input');
+                cb.type = 'checkbox';
+                cb.dataset.i = i;
+                cb.checked = t.done;
+                const txt = document.createElement('span');
+                txt.textContent = ' ' + t.text;
+                row.append(cb, txt);
+                list.appendChild(row);
+              });
+            };
+            input.addEventListener('keydown', e => {
+              if (e.key === 'Enter' && input.value.trim()) {
+                todos.push({ text: input.value.trim(), done:false });
+                input.value='';
+                render();
+              }
+            });
+            list.addEventListener('change', e => {
+              const i = e.target.dataset.i;
+              todos[i].done = e.target.checked;
+            });
+            render();
+          })();
+          break;
+        case 'clock':
+          (() => {
+            const win = createWindow('CLOCK', `<p style="font-size:24px;text-align:center;" id="clock-live">${clockEl.textContent}</p>`, 240, 180);
+            const t = setInterval(() => {
+              const el = win.querySelector('#clock-live');
+              if (el) el.textContent = new Date().toLocaleTimeString();
+            }, 1000);
+            win.querySelector('.title-bar-controls button[aria-label=\"close\"]').addEventListener('click', () => clearInterval(t));
+          })();
+          break;
+        case 'browser':
+          createWindow('BROWSER', `
+            <input id="mini-url" placeholder="Enter URL" style="width:100%;padding:6px;border:2px inset #d0d0d0;font-family:inherit;font-size:11px;">
+            <iframe id="mini-frame" style="width:100%;height:200px;border:2px solid #000;background:#fff;"></iframe>
+          `, 420, 320);
+          (() => {
+            const w = desktop.lastElementChild;
+            const url = w.querySelector('#mini-url');
+            const f = w.querySelector('#mini-frame');
+            url.addEventListener('keydown', e => {
+              if (e.key === 'Enter') {
+                try {
+                  const u = new URL(url.value.startsWith('http') ? url.value : `https://${url.value}`);
+                  f.src = u.href;
+                } catch {
+                  url.value = 'invalid url';
+                }
+              }
+            });
+          })();
+          break;
+        case 'html-edit':
+          createWindow('HTML EDITOR', `
+            <textarea id="html-editor" style="width:100%;height:220px;font-family:monospace;font-size:11px;border:2px inset #d0d0d0;"></textarea>
+            <button id="html-editor-copy">Copy</button>
+          `, 420, 320);
+          (() => {
+            const w = desktop.lastElementChild;
+            w.querySelector('#html-editor-copy').onclick = async () => {
+              const t = w.querySelector('#html-editor');
+              try {
+                await navigator.clipboard.writeText(t.value);
+                blip(900);
+              } catch {
+                t.select();
+                document.execCommand('copy');
+              }
+            };
+          })();
+          break;
+        case 'html-preview':
+          createWindow('HTML PREVIEW', `
+            <textarea id="html-src" style="width:100%;height:120px;font-family:monospace;font-size:11px;border:2px inset #d0d0d0;" placeholder="Paste HTML here"></textarea>
+            <button id="html-run">Render</button>
+            <div id="html-target" style="border:2px solid #000;background:#fff;height:140px;overflow:auto;margin-top:6px;padding:6px;"></div>
+          `, 420, 360);
+          (() => {
+            const w = desktop.lastElementChild;
+            const src = w.querySelector('#html-src');
+            const tgt = w.querySelector('#html-target');
+            w.querySelector('#html-run').onclick = () => {
+              tgt.textContent = '';
+              const temp = document.createElement('template');
+              temp.innerHTML = src.value;
+              tgt.textContent = temp.content.textContent || src.value;
+            };
+          })();
+          break;
+        case 'terminal':
+          createWindow('TERMINAL', `
+            <div id="term-log" style="height:200px;overflow:auto;background:#000;color:#33ff00;padding:6px;font-size:11px;"></div>
+            <input id="term-input" style="width:100%;padding:6px;border:2px inset #d0d0d0;background:#111;color:#33ff00;font-family:monospace;">
+          `, 420, 320);
+          (() => {
+            const w = desktop.lastElementChild;
+            const log = w.querySelector('#term-log');
+            const input = w.querySelector('#term-input');
+            const add = t => {
+              const d = document.createElement('div');
+              d.textContent = t;
+              log.appendChild(d);
+              log.scrollTop = log.scrollHeight;
+            };
+            add('echo welcome to 8Bit shell');
+            input.addEventListener('keydown', e => {
+              if (e.key === 'Enter') {
+                add('> ' + input.value);
+                add('output: ' + input.value.toUpperCase());
+                input.value = '';
+              }
+            });
+          })();
+          break;
+        case 'weather':
+          createWindow('WEATHER', `<p>Weather (offline)</p><p>🌤️ 72°F</p><p>Sunny and bright!</p>`, 240, 200);
+          break;
+        case 'email':
+          createWindow('EMAIL', `<p>Inbox (demo)</p><ul><li>Welcome to 8Bit Mail</li><li>Reminder: Stay retro!</li></ul>`, 260, 220);
+          break;
+        case 'chat':
+          createWindow('CHAT', `
+            <div id="chat-log" style="height:180px;overflow:auto;border:2px inset #d0d0d0;background:#fff;padding:4px;font-size:11px;"></div>
+            <input id="chat-input" placeholder="Type" style="width:100%;padding:6px;border:2px inset #d0d0d0;">
+          `, 320, 260);
+          (() => {
+            const w = desktop.lastElementChild;
+            const log = w.querySelector('#chat-log');
+            const input = w.querySelector('#chat-input');
+            const add = t => {
+              const d = document.createElement('div');
+              d.textContent = t;
+              log.appendChild(d);
+              log.scrollTop = log.scrollHeight;
+            };
+            input.addEventListener('keydown', e => {
+              if (e.key === 'Enter' && input.value.trim()) {
+                add('You: ' + input.value.trim());
+                add('BOT: beep boop');
+                input.value = '';
+              }
+            });
+          })();
+          break;
+        case 'game':
+          createWindow('SNAKE', `
+            <canvas id="snake" width="280" height="200" style="border:2px solid #000;background:#fff;"></canvas>
+            <p>Arrows to move</p>
+          `, 320, 300);
+          (() => {
+            const w = desktop.lastElementChild;
+            const c = w.querySelector('#snake');
+            const ctx = c.getContext('2d');
+            let dir = 'right';
+            let snake = [[4, 2], [3, 2], [2, 2]];
+            let food = [6, 6];
+            const size = 10;
+            const draw = () => {
+              ctx.fillStyle = '#fff';
+              ctx.fillRect(0, 0, c.width, c.height);
+              ctx.fillStyle = '#000';
+              snake.forEach(s => ctx.fillRect(s[0] * size, s[1] * size, size, size));
+              ctx.fillStyle = 'green';
+              ctx.fillRect(food[0] * size, food[1] * size, size, size);
+            };
+            const step = () => {
+              const head = [...snake[0]];
+              if (dir === 'right') head[0]++;
+              if (dir === 'left') head[0]--;
+              if (dir === 'up') head[1]--;
+              if (dir === 'down') head[1]++;
+              const hitWall = head[0] < 0 || head[1] < 0 || head[0] >= c.width / size || head[1] >= c.height / size;
+              const hitSelf = snake.some(s => s[0] === head[0] && s[1] === head[1]);
+              if (hitWall || hitSelf) {
+                clearInterval(loop);
+                window.removeEventListener('keydown', onKey);
+                ctx.fillStyle = 'red';
+                ctx.fillRect(0, 0, c.width, c.height);
+                return;
+              }
+              snake.unshift(head);
+              if (head[0] === food[0] && head[1] === food[1]) {
+                food = [
+                  Math.floor(Math.random() * (c.width / size)),
+                  Math.floor(Math.random() * (c.height / size))
+                ];
+              } else {
+                snake.pop();
+              }
+              draw();
+            };
+            const onKey = e => {
+              if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
+                dir = {
+                  ArrowUp: 'up',
+                  ArrowDown: 'down',
+                  ArrowLeft: 'left',
+                  ArrowRight: 'right'
+                }[e.key];
+              }
+            };
+            window.addEventListener('keydown', onKey);
+            draw();
+            const loop = setInterval(step, 120);
+            w.querySelector('.title-bar-controls button[aria-label=\"close\"]').addEventListener('click', () => {
+              clearInterval(loop);
+              window.removeEventListener('keydown', onKey);
+            });
+          })();
+          break;
+        case 'mines':
+          createWindow('MINES', `<p>Mini minesweeper</p><p>💣💣💣 (demo)</p>`, 220, 180);
+          break;
+        case 'synth':
+          createWindow('SYNTH', `
+            <p>Click keys</p>
+            <div id="synth-keys">
+              ${[261,293,329,349,392,440,493,523].map(f=>`<button data-f="${f}">${Math.round(f)}hz</button>`).join('')}
             </div>
-            <canvas id="paint-canvas" width="520" height="320"></canvas>
-          `, 600, 460);
-          setupPaint(paintWin.querySelector('#paint-canvas'));
+          `, 340, 220);
+          (() => {
+            const w = desktop.lastElementChild;
+            w.querySelectorAll('#synth-keys button').forEach(btn => {
+              btn.addEventListener('click', () => blip(parseInt(btn.dataset.f, 10)));
+            });
+          })();
+          break;
+        case 'timer':
+          createWindow('TIMER', `
+            <p><input id="timer-sec" type="number" value="5" style="width:80px;"> sec</p>
+            <button id="timer-start">Start</button>
+            <div id="timer-out"></div>
+          `, 220, 180);
+          (() => {
+            const w = desktop.lastElementChild;
+            const out = w.querySelector('#timer-out');
+            let iv = null;
+            w.querySelector('#timer-start').onclick = () => {
+              if (iv) clearInterval(iv);
+              let n = parseInt(w.querySelector('#timer-sec').value, 10) || 0;
+              out.textContent = '...';
+              iv = setInterval(() => {
+                out.textContent = n + 's';
+                n--;
+                if (n < 0) {
+                  clearInterval(iv);
+                  iv = null;
+                  out.textContent = 'done';
+                  blip(900);
+                }
+              }, 1000);
+            };
+          })();
+          break;
+        case 'converter':
+          createWindow('CONVERTER', `
+            <p>Inches <input id="conv-in" type="number" value="1" style="width:80px;"> = <span id="conv-cm">2.54</span> cm</p>
+          `, 260, 140);
+          (() => {
+            const w = desktop.lastElementChild;
+            const cm = w.querySelector('#conv-cm');
+            const inp = w.querySelector('#conv-in');
+            const calc = () => {
+              cm.textContent = (parseFloat(inp.value || 0) * 2.54).toFixed(2);
+            };
+            inp.addEventListener('input', calc);
+            calc();
+          })();
+          break;
+        case 'calendar':
+          createWindow('CALENDAR', `<p>${new Date().toDateString()}</p>`, 220, 140);
+          break;
+        case 'files':
+          createWindow('FILES', `<ul><li>home/</li><li>games/</li><li>music/</li></ul>`, 220, 180);
+          break;
+        case 'reader':
+          createWindow('READER', `<textarea style="width:100%;height:200px;border:2px inset #d0d0d0;">Paste text to read</textarea>`, 320, 260);
+          break;
+        case 'music-mp3':
+          createWindow('MP3 DECK', `
+            <p>Load your track URL</p>
+            <input id="mp3-url" placeholder="https://..." style="width:100%;padding:6px;border:2px inset #d0d0d0;">
+            <audio id="mp3-aud" controls style="width:100%;margin-top:6px;"></audio>
+          `, 320, 220);
+          (() => {
+            const w = desktop.lastElementChild;
+            const aud = w.querySelector('#mp3-aud');
+            const url = w.querySelector('#mp3-url');
+            url.addEventListener('keydown', e => {
+              if (e.key === 'Enter') {
+                aud.src = url.value;
+                aud.play();
+              }
+            });
+          })();
+          break;
+        case 'pixelpad':
+          createWindow('PIXELPAD', `
+            <p>Draw 8x8</p>
+            <div id="pixel-grid" style="display:grid;grid-template-columns:repeat(8,1fr);gap:2px;width:160px;"></div>
+          `, 240, 260);
+          (() => {
+            const w = desktop.lastElementChild;
+            const grid = w.querySelector('#pixel-grid');
+            for (let i = 0; i < 64; i++) {
+              const d = document.createElement('div');
+              d.style.border = '1px solid #000';
+              d.style.background = '#fff';
+              d.style.height = '18px';
+              d.addEventListener('click', () => {
+                d.style.background = d.style.background === '#fff' ? '#000' : '#fff';
+              });
+              grid.appendChild(d);
+            }
+          })();
+          break;
+        case 'news':
+          createWindow('NEWS', `<ul><li>8BitOS reaches v1.3</li><li>New apps deployed</li></ul>`, 260, 180);
+          break;
+        case 'camera':
+          createWindow('CAMERA', `<p>Camera not connected</p>`, 220, 150);
+          break;
+        case 'radio':
+          createWindow('RADIO', `<p>Play stream</p><audio controls src=""></audio>`, 220, 160);
           break;
         case 'gallery':
           const images = [
@@ -660,6 +1140,9 @@
       const sizePicker = canvas.parentElement.querySelector('#paint-size');
       const clearBtn = canvas.parentElement.querySelector('#paint-clear');
       const saveBtn = canvas.parentElement.querySelector('#paint-save');
+      const toolPicker = canvas.parentElement.querySelector('#paint-tool');
+      const gridBtn = canvas.parentElement.querySelector('#paint-grid');
+      let startPos = null;
 
       function pos(e) {
         const rect = canvas.getBoundingClientRect();
@@ -668,15 +1151,36 @@
         return { x, y };
       }
       function draw(e) {
-        if (!drawing) return;
         const { x, y } = pos(e);
-        ctx.fillStyle = colorPicker.value;
-        ctx.beginPath();
-        ctx.arc(x, y, parseInt(sizePicker.value, 10), 0, Math.PI * 2);
-        ctx.fill();
+        if (toolPicker?.value === 'line' && startPos) {
+          ctx.putImageData(snapshot, 0, 0);
+          ctx.strokeStyle = colorPicker.value;
+          ctx.lineWidth = parseInt(sizePicker.value, 10);
+          ctx.beginPath(); ctx.moveTo(startPos.x, startPos.y); ctx.lineTo(x, y); ctx.stroke();
+          return;
+        }
+        if (toolPicker?.value === 'rect' && startPos) {
+          ctx.putImageData(snapshot, 0, 0);
+          ctx.fillStyle = colorPicker.value;
+          ctx.fillRect(startPos.x, startPos.y, x - startPos.x, y - startPos.y);
+          return;
+        }
+        if (!drawing) return;
+        if (toolPicker?.value === 'brush') {
+          ctx.fillStyle = colorPicker.value;
+          ctx.beginPath();
+          ctx.arc(x, y, parseInt(sizePicker.value, 10), 0, Math.PI * 2);
+          ctx.fill();
+        }
       }
-      canvas.addEventListener('mousedown', e => { drawing = true; draw(e); });
-      canvas.addEventListener('touchstart', e => { drawing = true; draw(e); });
+      let snapshot = ctx.getImageData(0,0,canvas.width,canvas.height);
+      function captureIfNeeded() {
+        if (toolPicker?.value === 'line' || toolPicker?.value === 'rect') {
+          snapshot = ctx.getImageData(0,0,canvas.width,canvas.height);
+        }
+      }
+      canvas.addEventListener('mousedown', e => { drawing = true; startPos = pos(e); captureIfNeeded(); if(toolPicker?.value==='brush') draw(e); });
+      canvas.addEventListener('touchstart', e => { drawing = true; startPos = pos(e); captureIfNeeded(); if(toolPicker?.value==='brush') draw(e); });
       canvas.addEventListener('mousemove', draw);
       canvas.addEventListener('touchmove', e => { draw(e); e.preventDefault(); }, { passive: false });
       document.addEventListener('mouseup', () => drawing = false);
@@ -685,12 +1189,60 @@
         ctx.fillStyle = '#ffffff';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
       });
+      gridBtn?.addEventListener('click', () => {
+        canvas.classList.toggle('grid-on');
+      });
+      canvas.addEventListener('mouseup', e => {
+        if (!startPos) return;
+        if (toolPicker?.value === 'line') {
+          const { x, y } = pos(e);
+          ctx.putImageData(snapshot,0,0);
+          ctx.strokeStyle = colorPicker.value;
+          ctx.lineWidth = parseInt(sizePicker.value, 10);
+          ctx.beginPath(); ctx.moveTo(startPos.x, startPos.y); ctx.lineTo(x, y); ctx.stroke();
+        }
+        if (toolPicker?.value === 'fill') {
+          const { x, y } = pos(e);
+          floodFill(ctx, Math.round(x), Math.round(y), colorPicker.value);
+        }
+        drawing = false; startPos = null;
+      });
       saveBtn.addEventListener('click', () => {
         const link = document.createElement('a');
         link.download = '8bit-paint.png';
         link.href = canvas.toDataURL();
         link.click();
       });
+    }
+
+    function floodFill(ctx, x, y, fillColor) {
+      const img = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
+      const data = img.data;
+      const width = img.width;
+      const idx = (x + y * width) * 4;
+      const target = data.slice(idx, idx + 4);
+      const fill = hexToRgba(fillColor);
+      if (target.every((v, i) => v === fill[i])) return;
+      const stack = [[x, y]];
+      while (stack.length) {
+        const [cx, cy] = stack.pop();
+        if (cx < 0 || cy < 0 || cx >= width || cy >= img.height) continue;
+        const i = (cx + cy * width) * 4;
+        if (data[i] === target[0] && data[i + 1] === target[1] && data[i + 2] === target[2] && data[i + 3] === target[3]) {
+          data[i] = fill[0]; data[i + 1] = fill[1]; data[i + 2] = fill[2]; data[i + 3] = fill[3];
+          stack.push([cx + 1, cy], [cx - 1, cy], [cx, cy + 1], [cx, cy - 1]);
+        }
+      }
+      ctx.putImageData(img, 0, 0);
+    }
+
+    function hexToRgba(hex) {
+      const v = hex.replace('#', '');
+      const bigint = parseInt(v, 16);
+      const r = (bigint >> 16) & 255;
+      const g = (bigint >> 8) & 255;
+      const b = bigint & 255;
+      return [r, g, b, 255];
     }
 
     // --- Calculator ---
