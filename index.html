@@ -756,21 +756,54 @@
           })();
           break;
         case 'clock':
-          (()=>{const win=createWindow('CLOCK', `<p style="font-size:24px;text-align:center;" id="clock-live">${clockEl.textContent}</p>`, 240, 180);const t=setInterval(() => {const el = win.querySelector('#clock-live');if (el) el.textContent = new Date().toLocaleTimeString();}, 1000);win.querySelector('.title-bar-controls button[aria-label=\"close\"]').addEventListener('click',()=>clearInterval(t));})();
+          (() => {
+            const win = createWindow('CLOCK', `<p style="font-size:24px;text-align:center;" id="clock-live">${clockEl.textContent}</p>`, 240, 180);
+            const t = setInterval(() => {
+              const el = win.querySelector('#clock-live');
+              if (el) el.textContent = new Date().toLocaleTimeString();
+            }, 1000);
+            win.querySelector('.title-bar-controls button[aria-label=\"close\"]').addEventListener('click', () => clearInterval(t));
+          })();
           break;
         case 'browser':
           createWindow('BROWSER', `
             <input id="mini-url" placeholder="Enter URL" style="width:100%;padding:6px;border:2px inset #d0d0d0;font-family:inherit;font-size:11px;">
             <iframe id="mini-frame" style="width:100%;height:200px;border:2px solid #000;background:#fff;"></iframe>
           `, 420, 320);
-          (()=>{const w=desktop.lastElementChild;const url=w.querySelector('#mini-url');const f=w.querySelector('#mini-frame');url.addEventListener('keydown',e=>{if(e.key==='Enter'){try{const u=new URL(url.value.startsWith('http')?url.value:`https://${url.value}`);f.src=u.href;}catch{url.value='invalid url';}}});})();
+          (() => {
+            const w = desktop.lastElementChild;
+            const url = w.querySelector('#mini-url');
+            const f = w.querySelector('#mini-frame');
+            url.addEventListener('keydown', e => {
+              if (e.key === 'Enter') {
+                try {
+                  const u = new URL(url.value.startsWith('http') ? url.value : `https://${url.value}`);
+                  f.src = u.href;
+                } catch {
+                  url.value = 'invalid url';
+                }
+              }
+            });
+          })();
           break;
         case 'html-edit':
           createWindow('HTML EDITOR', `
             <textarea id="html-editor" style="width:100%;height:220px;font-family:monospace;font-size:11px;border:2px inset #d0d0d0;"></textarea>
             <button id="html-editor-copy">Copy</button>
           `, 420, 320);
-          (()=>{const w=desktop.lastElementChild;w.querySelector('#html-editor-copy').onclick=async()=>{const t=w.querySelector('#html-editor');try{await navigator.clipboard.writeText(t.value);blip(900);}catch{t.select();document.execCommand('copy');}}})();
+          (() => {
+            const w = desktop.lastElementChild;
+            w.querySelector('#html-editor-copy').onclick = async () => {
+              const t = w.querySelector('#html-editor');
+              try {
+                await navigator.clipboard.writeText(t.value);
+                blip(900);
+              } catch {
+                t.select();
+                document.execCommand('copy');
+              }
+            };
+          })();
           break;
         case 'html-preview':
           createWindow('HTML PREVIEW', `
@@ -778,7 +811,15 @@
             <button id="html-run">Render</button>
             <div id="html-target" style="border:2px solid #000;background:#fff;height:140px;overflow:auto;margin-top:6px;padding:6px;"></div>
           `, 420, 360);
-          (()=>{const w=desktop.lastElementChild;const src=w.querySelector('#html-src');const tgt=w.querySelector('#html-target');w.querySelector('#html-run').onclick=()=>{tgt.textContent='';tgt.insertAdjacentHTML('beforeend', src.value);};})();
+          (() => {
+            const w = desktop.lastElementChild;
+            const src = w.querySelector('#html-src');
+            const tgt = w.querySelector('#html-target');
+            w.querySelector('#html-run').onclick = () => {
+              tgt.textContent = '';
+              tgt.insertAdjacentHTML('beforeend', src.value);
+            };
+          })();
           break;
         case 'terminal':
           createWindow('TERMINAL', `<div id="term-log" style="height:200px;overflow:auto;background:#000;color:#33ff00;padding:6px;font-size:11px;"></div><input id="term-input" style="width:100%;padding:6px;border:2px inset #d0d0d0;background:#111;color:#33ff00;font-family:monospace;">`, 420, 320);
@@ -795,8 +836,71 @@
           (()=>{const w=desktop.lastElementChild;const log=w.querySelector('#chat-log');const input=w.querySelector('#chat-input');const add=(t)=>{const d=document.createElement('div');d.textContent=t;log.appendChild(d);log.scrollTop=log.scrollHeight;};input.addEventListener('keydown',e=>{if(e.key==='Enter'&&input.value.trim()){add('You: '+input.value.trim());add('BOT: beep boop');input.value='';}});})();
           break;
         case 'game':
-          createWindow('SNAKE', `<canvas id="snake" width="280" height="200" style="border:2px solid #000;background:#fff;"></canvas><p>Arrows to move</p>`, 320, 300);
-          (()=>{const w=desktop.lastElementChild;const c=w.querySelector('#snake');const ctx=c.getContext('2d');let dir='right';let snake=[[4,2],[3,2],[2,2]];let food=[6,6];const size=10;const draw=()=>{ctx.fillStyle='#fff';ctx.fillRect(0,0,c.width,c.height);ctx.fillStyle='#000';snake.forEach(s=>ctx.fillRect(s[0]*size,s[1]*size,size,size));ctx.fillStyle='green';ctx.fillRect(food[0]*size,food[1]*size,size,size);};const step=()=>{const head=[...snake[0]];if(dir==='right')head[0]++;if(dir==='left')head[0]--;if(dir==='up')head[1]--;if(dir==='down')head[1]++;if(head[0]<0||head[1]<0||head[0]*size>=c.width||head[1]*size>=c.height||snake.some(s=>s[0]===head[0]&&s[1]===head[1])){clearInterval(loop);window.removeEventListener('keydown',onKey);ctx.fillStyle='red';ctx.fillRect(0,0,c.width,c.height);return;}snake.unshift(head);if(head[0]===food[0]&&head[1]===food[1]){food=[Math.floor(Math.random()* (c.width/size)),Math.floor(Math.random()* (c.height/size))];}else{snake.pop();}draw();};const onKey=e=>{if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(e.key)){dir={ArrowUp:'up',ArrowDown:'down',ArrowLeft:'left',ArrowRight:'right'}[e.key];}};window.addEventListener('keydown',onKey);draw();const loop=setInterval(step,120);w.querySelector('.title-bar-controls button[aria-label=\"close\"]').addEventListener('click',()=>{clearInterval(loop);window.removeEventListener('keydown',onKey);});})();break;
+          createWindow('SNAKE', `
+            <canvas id="snake" width="280" height="200" style="border:2px solid #000;background:#fff;"></canvas>
+            <p>Arrows to move</p>
+          `, 320, 300);
+          (() => {
+            const w = desktop.lastElementChild;
+            const c = w.querySelector('#snake');
+            const ctx = c.getContext('2d');
+            let dir = 'right';
+            let snake = [[4, 2], [3, 2], [2, 2]];
+            let food = [6, 6];
+            const size = 10;
+            const draw = () => {
+              ctx.fillStyle = '#fff';
+              ctx.fillRect(0, 0, c.width, c.height);
+              ctx.fillStyle = '#000';
+              snake.forEach(s => ctx.fillRect(s[0] * size, s[1] * size, size, size));
+              ctx.fillStyle = 'green';
+              ctx.fillRect(food[0] * size, food[1] * size, size, size);
+            };
+            const step = () => {
+              const head = [...snake[0]];
+              if (dir === 'right') head[0]++;
+              if (dir === 'left') head[0]--;
+              if (dir === 'up') head[1]--;
+              if (dir === 'down') head[1]++;
+              const hitWall = head[0] < 0 || head[1] < 0 || head[0] * size >= c.width || head[1] * size >= c.height;
+              const hitSelf = snake.some(s => s[0] === head[0] && s[1] === head[1]);
+              if (hitWall || hitSelf) {
+                clearInterval(loop);
+                window.removeEventListener('keydown', onKey);
+                ctx.fillStyle = 'red';
+                ctx.fillRect(0, 0, c.width, c.height);
+                return;
+              }
+              snake.unshift(head);
+              if (head[0] === food[0] && head[1] === food[1]) {
+                food = [
+                  Math.floor(Math.random() * (c.width / size)),
+                  Math.floor(Math.random() * (c.height / size))
+                ];
+              } else {
+                snake.pop();
+              }
+              draw();
+            };
+            const onKey = e => {
+              if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
+                dir = {
+                  ArrowUp: 'up',
+                  ArrowDown: 'down',
+                  ArrowLeft: 'left',
+                  ArrowRight: 'right'
+                }[e.key];
+              }
+            };
+            window.addEventListener('keydown', onKey);
+            draw();
+            const loop = setInterval(step, 120);
+            w.querySelector('.title-bar-controls button[aria-label=\"close\"]').addEventListener('click', () => {
+              clearInterval(loop);
+              window.removeEventListener('keydown', onKey);
+            });
+          })();
+          break;
         case 'mines':
           createWindow('MINES', `<p>Mini minesweeper</p><p>💣💣💣 (demo)</p>`, 220, 180);
           break;
@@ -925,13 +1029,13 @@
           ctx.beginPath(); ctx.moveTo(startPos.x, startPos.y); ctx.lineTo(x, y); ctx.stroke();
           return;
         }
-        if (!drawing) return;
         if (toolPicker?.value === 'rect' && startPos) {
           ctx.putImageData(snapshot, 0, 0);
           ctx.fillStyle = colorPicker.value;
           ctx.fillRect(startPos.x, startPos.y, x - startPos.x, y - startPos.y);
           return;
         }
+        if (!drawing) return;
         if (toolPicker?.value === 'brush') {
           ctx.fillStyle = colorPicker.value;
           ctx.beginPath();
