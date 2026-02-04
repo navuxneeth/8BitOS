@@ -739,8 +739,21 @@
             const win = desktop.lastElementChild;
             const list = win.querySelector('#todo-list');
             const input = win.querySelector('#todo-input');
-            const render = () => list.innerHTML = todos.map((t,i)=>`<div><input type="checkbox" data-i="${i}" ${t.done?'checked':''}> ${t.text}</div>`).join('');
             const todos = [];
+            const render = () => {
+              list.innerHTML = '';
+              todos.forEach((t, i) => {
+                const row = document.createElement('div');
+                const cb = document.createElement('input');
+                cb.type = 'checkbox';
+                cb.dataset.i = i;
+                cb.checked = t.done;
+                const txt = document.createElement('span');
+                txt.textContent = ' ' + t.text;
+                row.append(cb, txt);
+                list.appendChild(row);
+              });
+            };
             input.addEventListener('keydown', e => {
               if (e.key === 'Enter' && input.value.trim()) {
                 todos.push({ text: input.value.trim(), done:false });
@@ -817,13 +830,36 @@
             const tgt = w.querySelector('#html-target');
             w.querySelector('#html-run').onclick = () => {
               tgt.textContent = '';
-              tgt.insertAdjacentHTML('beforeend', src.value);
+              const temp = document.createElement('template');
+              temp.innerHTML = src.value;
+              tgt.textContent = temp.content.textContent || src.value;
             };
           })();
           break;
         case 'terminal':
-          createWindow('TERMINAL', `<div id="term-log" style="height:200px;overflow:auto;background:#000;color:#33ff00;padding:6px;font-size:11px;"></div><input id="term-input" style="width:100%;padding:6px;border:2px inset #d0d0d0;background:#111;color:#33ff00;font-family:monospace;">`, 420, 320);
-          (()=>{const w=desktop.lastElementChild;const log=w.querySelector('#term-log');const input=w.querySelector('#term-input');const add=t=>{const d=document.createElement('div');d.textContent=t;log.appendChild(d);log.scrollTop=log.scrollHeight;};add('echo welcome to 8Bit shell');input.addEventListener('keydown',e=>{if(e.key==='Enter'){add('> '+input.value);add('output: '+input.value.toUpperCase());input.value='';}});})();
+          createWindow('TERMINAL', `
+            <div id="term-log" style="height:200px;overflow:auto;background:#000;color:#33ff00;padding:6px;font-size:11px;"></div>
+            <input id="term-input" style="width:100%;padding:6px;border:2px inset #d0d0d0;background:#111;color:#33ff00;font-family:monospace;">
+          `, 420, 320);
+          (() => {
+            const w = desktop.lastElementChild;
+            const log = w.querySelector('#term-log');
+            const input = w.querySelector('#term-input');
+            const add = t => {
+              const d = document.createElement('div');
+              d.textContent = t;
+              log.appendChild(d);
+              log.scrollTop = log.scrollHeight;
+            };
+            add('echo welcome to 8Bit shell');
+            input.addEventListener('keydown', e => {
+              if (e.key === 'Enter') {
+                add('> ' + input.value);
+                add('output: ' + input.value.toUpperCase());
+                input.value = '';
+              }
+            });
+          })();
           break;
         case 'weather':
           createWindow('WEATHER', `<p>Weather (offline)</p><p>🌤️ 72°F</p><p>Sunny and bright!</p>`, 240, 200);
@@ -832,8 +868,28 @@
           createWindow('EMAIL', `<p>Inbox (demo)</p><ul><li>Welcome to 8Bit Mail</li><li>Reminder: Stay retro!</li></ul>`, 260, 220);
           break;
         case 'chat':
-          createWindow('CHAT', `<div id="chat-log" style="height:180px;overflow:auto;border:2px inset #d0d0d0;background:#fff;padding:4px;font-size:11px;"></div><input id="chat-input" placeholder="Type" style="width:100%;padding:6px;border:2px inset #d0d0d0;">`, 320, 260);
-          (()=>{const w=desktop.lastElementChild;const log=w.querySelector('#chat-log');const input=w.querySelector('#chat-input');const add=(t)=>{const d=document.createElement('div');d.textContent=t;log.appendChild(d);log.scrollTop=log.scrollHeight;};input.addEventListener('keydown',e=>{if(e.key==='Enter'&&input.value.trim()){add('You: '+input.value.trim());add('BOT: beep boop');input.value='';}});})();
+          createWindow('CHAT', `
+            <div id="chat-log" style="height:180px;overflow:auto;border:2px inset #d0d0d0;background:#fff;padding:4px;font-size:11px;"></div>
+            <input id="chat-input" placeholder="Type" style="width:100%;padding:6px;border:2px inset #d0d0d0;">
+          `, 320, 260);
+          (() => {
+            const w = desktop.lastElementChild;
+            const log = w.querySelector('#chat-log');
+            const input = w.querySelector('#chat-input');
+            const add = t => {
+              const d = document.createElement('div');
+              d.textContent = t;
+              log.appendChild(d);
+              log.scrollTop = log.scrollHeight;
+            };
+            input.addEventListener('keydown', e => {
+              if (e.key === 'Enter' && input.value.trim()) {
+                add('You: ' + input.value.trim());
+                add('BOT: beep boop');
+                input.value = '';
+              }
+            });
+          })();
           break;
         case 'game':
           createWindow('SNAKE', `
@@ -862,7 +918,7 @@
               if (dir === 'left') head[0]--;
               if (dir === 'up') head[1]--;
               if (dir === 'down') head[1]++;
-              const hitWall = head[0] < 0 || head[1] < 0 || head[0] * size >= c.width || head[1] * size >= c.height;
+              const hitWall = head[0] < 0 || head[1] < 0 || head[0] >= c.width / size || head[1] >= c.height / size;
               const hitSelf = snake.some(s => s[0] === head[0] && s[1] === head[1]);
               if (hitWall || hitSelf) {
                 clearInterval(loop);
@@ -905,16 +961,60 @@
           createWindow('MINES', `<p>Mini minesweeper</p><p>💣💣💣 (demo)</p>`, 220, 180);
           break;
         case 'synth':
-          createWindow('SYNTH', `<p>Click keys</p><div id="synth-keys">${[261,293,329,349,392,440,493,523].map(f=>`<button data-f="${f}">${Math.round(f)}hz</button>`).join('')}</div>`, 340, 220);
-          (()=>{const w=desktop.lastElementChild;w.querySelectorAll('#synth-keys button').forEach(btn=>btn.addEventListener('click',()=>{blip(parseInt(btn.dataset.f,10));}));})();
+          createWindow('SYNTH', `
+            <p>Click keys</p>
+            <div id="synth-keys">
+              ${[261,293,329,349,392,440,493,523].map(f=>`<button data-f="${f}">${Math.round(f)}hz</button>`).join('')}
+            </div>
+          `, 340, 220);
+          (() => {
+            const w = desktop.lastElementChild;
+            w.querySelectorAll('#synth-keys button').forEach(btn => {
+              btn.addEventListener('click', () => blip(parseInt(btn.dataset.f, 10)));
+            });
+          })();
           break;
         case 'timer':
-          createWindow('TIMER', `<p><input id="timer-sec" type="number" value="5" style="width:80px;"> sec</p><button id="timer-start">Start</button><div id="timer-out"></div>`, 220, 180);
-          (()=>{const w=desktop.lastElementChild;const out=w.querySelector('#timer-out');let iv=null;w.querySelector('#timer-start').onclick=()=>{if(iv) clearInterval(iv);let n=parseInt(w.querySelector('#timer-sec').value,10)||0;out.textContent='...';iv=setInterval(()=>{out.textContent=n+'s';n--;if(n<0){clearInterval(iv);iv=null;out.textContent='done';blip(900);}},1000);};})();
+          createWindow('TIMER', `
+            <p><input id="timer-sec" type="number" value="5" style="width:80px;"> sec</p>
+            <button id="timer-start">Start</button>
+            <div id="timer-out"></div>
+          `, 220, 180);
+          (() => {
+            const w = desktop.lastElementChild;
+            const out = w.querySelector('#timer-out');
+            let iv = null;
+            w.querySelector('#timer-start').onclick = () => {
+              if (iv) clearInterval(iv);
+              let n = parseInt(w.querySelector('#timer-sec').value, 10) || 0;
+              out.textContent = '...';
+              iv = setInterval(() => {
+                out.textContent = n + 's';
+                n--;
+                if (n < 0) {
+                  clearInterval(iv);
+                  iv = null;
+                  out.textContent = 'done';
+                  blip(900);
+                }
+              }, 1000);
+            };
+          })();
           break;
         case 'converter':
-          createWindow('CONVERTER', `<p>Inches <input id="conv-in" type="number" value="1" style="width:80px;"> = <span id="conv-cm">2.54</span> cm</p>`, 260, 140);
-          (()=>{const w=desktop.lastElementChild;const cm=w.querySelector('#conv-cm');const inp=w.querySelector('#conv-in');const calc=()=>{cm.textContent=(parseFloat(inp.value||0)*2.54).toFixed(2);};inp.addEventListener('input',calc);calc();})();
+          createWindow('CONVERTER', `
+            <p>Inches <input id="conv-in" type="number" value="1" style="width:80px;"> = <span id="conv-cm">2.54</span> cm</p>
+          `, 260, 140);
+          (() => {
+            const w = desktop.lastElementChild;
+            const cm = w.querySelector('#conv-cm');
+            const inp = w.querySelector('#conv-in');
+            const calc = () => {
+              cm.textContent = (parseFloat(inp.value || 0) * 2.54).toFixed(2);
+            };
+            inp.addEventListener('input', calc);
+            calc();
+          })();
           break;
         case 'calendar':
           createWindow('CALENDAR', `<p>${new Date().toDateString()}</p>`, 220, 140);
@@ -926,12 +1026,42 @@
           createWindow('READER', `<textarea style="width:100%;height:200px;border:2px inset #d0d0d0;">Paste text to read</textarea>`, 320, 260);
           break;
         case 'music-mp3':
-          createWindow('MP3 DECK', `<p>Load your track URL</p><input id="mp3-url" placeholder="https://..." style="width:100%;padding:6px;border:2px inset #d0d0d0;"><audio id="mp3-aud" controls style="width:100%;margin-top:6px;"></audio>`, 320, 220);
-          (()=>{const w=desktop.lastElementChild;const aud=w.querySelector('#mp3-aud');const url=w.querySelector('#mp3-url');url.addEventListener('keydown',e=>{if(e.key==='Enter'){aud.src=url.value;aud.play();}});})();
+          createWindow('MP3 DECK', `
+            <p>Load your track URL</p>
+            <input id="mp3-url" placeholder="https://..." style="width:100%;padding:6px;border:2px inset #d0d0d0;">
+            <audio id="mp3-aud" controls style="width:100%;margin-top:6px;"></audio>
+          `, 320, 220);
+          (() => {
+            const w = desktop.lastElementChild;
+            const aud = w.querySelector('#mp3-aud');
+            const url = w.querySelector('#mp3-url');
+            url.addEventListener('keydown', e => {
+              if (e.key === 'Enter') {
+                aud.src = url.value;
+                aud.play();
+              }
+            });
+          })();
           break;
         case 'pixelpad':
-          createWindow('PIXELPAD', `<p>Draw 8x8</p><div id="pixel-grid" style="display:grid;grid-template-columns:repeat(8,1fr);gap:2px;width:160px;"></div>`, 240, 260);
-          (()=>{const w=desktop.lastElementChild;const grid=w.querySelector('#pixel-grid');for(let i=0;i<64;i++){const d=document.createElement('div');d.style.border='1px solid #000';d.style.background='#fff';d.style.height='18px';d.addEventListener('click',()=>{d.style.background=d.style.background==='#fff'?'#000':'#fff';});grid.appendChild(d);}})();
+          createWindow('PIXELPAD', `
+            <p>Draw 8x8</p>
+            <div id="pixel-grid" style="display:grid;grid-template-columns:repeat(8,1fr);gap:2px;width:160px;"></div>
+          `, 240, 260);
+          (() => {
+            const w = desktop.lastElementChild;
+            const grid = w.querySelector('#pixel-grid');
+            for (let i = 0; i < 64; i++) {
+              const d = document.createElement('div');
+              d.style.border = '1px solid #000';
+              d.style.background = '#fff';
+              d.style.height = '18px';
+              d.addEventListener('click', () => {
+                d.style.background = d.style.background === '#fff' ? '#000' : '#fff';
+              });
+              grid.appendChild(d);
+            }
+          })();
           break;
         case 'news':
           createWindow('NEWS', `<ul><li>8BitOS reaches v1.3</li><li>New apps deployed</li></ul>`, 260, 180);
@@ -1044,8 +1174,13 @@
         }
       }
       let snapshot = ctx.getImageData(0,0,canvas.width,canvas.height);
-      canvas.addEventListener('mousedown', e => { drawing = true; startPos = pos(e); snapshot = ctx.getImageData(0,0,canvas.width,canvas.height); if(toolPicker?.value==='brush') draw(e); });
-      canvas.addEventListener('touchstart', e => { drawing = true; startPos = pos(e); snapshot = ctx.getImageData(0,0,canvas.width,canvas.height); if(toolPicker?.value==='brush') draw(e); });
+      function captureIfNeeded() {
+        if (toolPicker?.value === 'line' || toolPicker?.value === 'rect') {
+          snapshot = ctx.getImageData(0,0,canvas.width,canvas.height);
+        }
+      }
+      canvas.addEventListener('mousedown', e => { drawing = true; startPos = pos(e); captureIfNeeded(); if(toolPicker?.value==='brush') draw(e); });
+      canvas.addEventListener('touchstart', e => { drawing = true; startPos = pos(e); captureIfNeeded(); if(toolPicker?.value==='brush') draw(e); });
       canvas.addEventListener('mousemove', draw);
       canvas.addEventListener('touchmove', e => { draw(e); e.preventDefault(); }, { passive: false });
       document.addEventListener('mouseup', () => drawing = false);
